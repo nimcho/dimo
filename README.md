@@ -73,7 +73,7 @@ model_ske = SkEThesSKE("plain-bnc-matrix", weighting=ppmi)
 
    
 
-### Word2Vec
+### Word2Vec
 
 For Word2Vec models, this project wraps over gensim package.  Everything that you can open with:
 
