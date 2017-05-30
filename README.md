@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/nimcho/dimo/blob/master/LICENSE)
 
-DiMo is a collection of scripts for my bachelor's thesis *Comparison and Evaluation of Models for Distributional Semantics*.
+DiMo is a collection of scripts for my bachelor's thesis [*Comparison and Evaluation of Models for Distributional Semantics*](https://is.muni.cz/auth/th/422602/fi_b/?studium=647618).
 
 Take a look at notebooks on the thesis's official website to see how these scripts can be used:
 
@@ -33,10 +33,10 @@ python wm2thes.py bnc2 bnc2-matrix
 
 This creates 4 files representing a sparse *word x (relation, word)* matrix:
 
-    - bnc2-matrix-word2i.pickle  # dictionary: words to indices
-    - bnc2-matrix-rows.npy       # row indices
-    - bnc2-matrix-cols.npy       # col indices
-    - bnc2-matrix-vals.npy       # values
+    - bnc2-matrix-target2i.pickle  # dictionary: words to indices
+    - bnc2-matrix-rows.npy         # row indices
+    - bnc2-matrix-cols.npy         # col indices
+    - bnc2-matrix-vals.npy         # values
 
 Now that you have the matrix, you may decide which similarity measure to use.
 
@@ -48,6 +48,8 @@ model_cos = SkEThesCOS("bnc2-matrix")
 ```
 
 Now you can call functions like `similarity`, `similarities`, `most_similar` or `eval_analogy` to evaluate the models on datasets of analogy queries.
+
+There is also a wrapper for the original implementation in `oskethes.py`, but the interface is a bit different as it is just a collection of several word similarities, the co-occurrence matrix is gone, similarities < 0.05 are gone...
 
 ### Word-Word Co-Occurrence Matrix
 
@@ -68,6 +70,8 @@ from weightings import ppmi
 
 model_ske = SkEThesSKE("plain-bnc-matrix", weighting=ppmi)
 ```
+
+   
 
 ### Word2Vec
 
@@ -117,5 +121,5 @@ evaluation["acc"]  # 0.0--1.0
 evaluation["acc_top1"]  # 0.0--1.0
 evaluation["oov"]  # nb of queries containing an oov word
 evaluation["oovs"]  # set of oov words
-queries=list()  # queries with candidate answers
+queries=list()  # queries with candidate answers  (excluding queries with oov words)
 ```
