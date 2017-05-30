@@ -117,9 +117,9 @@ evaluation = model.eval_analogy(dataset, topn=5, exclusion_trick=False, formula=
 And see the results:
 
 ```python
-evaluation["acc"]  # 0.0--1.0
-evaluation["acc_top1"]  # 0.0--1.0
-evaluation["oov"]  # nb of queries containing an oov word
-evaluation["oovs"]  # set of oov words
-queries=list()  # queries with candidate answers  (excluding queries with oov words)
+evaluation[category]["acc"]  # 0.0--1.0
+evaluation[category]["acc_top1"]  # 0.0--1.0
+evaluation[category]["oov"]  # nb of queries containing an oov word
+evaluation[category]["oovs"]  # set of oov words
+evaluation[category]["queries"]  # list of queries and their candidate answers  (excluding queries with oov words)
 ```
